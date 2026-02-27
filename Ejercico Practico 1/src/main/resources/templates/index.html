@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Inicio | Salón Belleza')"></head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<main class="container">
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Bienvenido a <span class="accent">Salón Belleza</span></h1>
+      <p>Agenda tus servicios favoritos, conoce nuestras promociones y vive una experiencia de cuidado personal moderna.</p>
+      <div class="hero-actions">
+        <a class="btn" th:href="@{/reservas}">Ver Reservas</a>
+        <a class="btn btn-outline" th:href="@{/servicios}">Ver Servicios</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <h3>Servicio destacado ✨</h3>
+      <p><strong>Balayage Premium</strong> con tratamiento hidratante incluido.</p>
+      <p class="muted">Promoción del mes: 10% descuento reservando en línea.</p>
+
+      <div class="video">
+        <iframe width="100%" height="200"
+                src="https://www.youtube.com/watch?v=XWo37TMcpn0&list=RDXWo37TMcpn0&start_radio=1"
+                title="Video Promocional"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2>Servicios disponibles</h2>
+      <p class="muted">Listado rápido (CRUD completo en Servicios).</p>
+    </div>
+
+    <div class="grid">
+      <div class="card" th:each="s : ${servicios}">
+        <h3 th:text="${s.nombre}">Nombre</h3>
+        <p class="muted">
+          Categoría: <span th:text="${s.categoria.nombre}">Cat</span>
+        </p>
+        <p class="price">₡ <span th:text="${s.precio}">0.00</span></p>
+      </div>
+
+      <div class="card" th:if="${#lists.isEmpty(servicios)}">
+        <h3>No hay servicios aún</h3>
+        <p class="muted">Agrega servicios desde el módulo de Servicios.</p>
+        <a class="btn" th:href="@{/servicios/nuevo}">Agregar Servicio</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

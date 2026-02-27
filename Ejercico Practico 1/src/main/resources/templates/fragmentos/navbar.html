@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="navbar">
+<header class="header">
+  <div class="container header-row">
+    <div class="brand">
+      <a th:href="@{/}" class="brand-link">Salón Belleza</a>
+      <span class="tag">Glow & Style</span>
+    </div>
+
+    <nav class="nav">
+      <a th:href="@{/}" class="nav-link">Inicio</a>
+      <a th:href="@{/categorias}" class="nav-link">Categorías</a>
+      <a th:href="@{/servicios}" class="nav-link">Servicios</a>
+      <a th:href="@{/reservas}" class="nav-link">Reservas</a>
+      <a th:href="@{/contacto}" class="nav-link">Contacto</a>
+    </nav>
+  </div>
+</header>
+</body>
+</html>

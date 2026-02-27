@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Contacto | Salón Belleza')"></head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<main class="container">
+  <section class="section">
+    <div class="section-head">
+      <h2>Quejas y sugerencias</h2>
+      <p class="muted">Formulario solo interfaz (no guarda en base de datos).</p>
+    </div>
+
+    <div class="card">
+      <form>
+        <div class="form-row">
+          <label>Nombre</label>
+          <input type="text" placeholder="Tu nombre completo" required>
+        </div>
+
+        <div class="form-row">
+          <label>Email</label>
+          <input type="email" placeholder="correo@ejemplo.com" required>
+        </div>
+
+        <div class="form-row">
+          <label>Mensaje</label>
+          <textarea rows="5" placeholder="Escribe tu queja o sugerencia..." required></textarea>
+        </div>
+
+        <button class="btn" type="submit">Enviar</button>
+        <p class="muted" style="margin-top:10px">* Este formulario es visual únicamente.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

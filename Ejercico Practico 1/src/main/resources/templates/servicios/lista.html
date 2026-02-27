@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Servicios | Salón Belleza')"></head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<main class="container">
+  <section class="section">
+    <div class="section-head">
+      <h2>Gestión de Servicios</h2>
+      <a class="btn" th:href="@{/servicios/nuevo}">Nuevo Servicio</a>
+    </div>
+
+    <div class="card">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Precio</th>
+          <th>Categoría</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="s : ${servicios}">
+          <td th:text="${s.id}">1</td>
+          <td th:text="${s.nombre}">Corte</td>
+          <td>₡ <span th:text="${s.precio}">0.00</span></td>
+          <td th:text="${s.categoria.nombre}">Cabello</td>
+          <td class="actions">
+            <a class="btn btn-sm" th:href="@{/servicios/editar/{id}(id=${s.id})}">Editar</a>
+            <a class="btn btn-sm btn-danger" th:href="@{/servicios/eliminar/{id}(id=${s.id})}"
+               onclick="return confirm('¿Eliminar servicio?')">Eliminar</a>
+          </td>
+        </tr>
+
+        <tr th:if="${#lists.isEmpty(servicios)}">
+          <td colspan="5" class="muted">No hay servicios registrados.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

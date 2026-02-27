@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Formulario Reserva | Salón Belleza')"></head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<main class="container">
+  <section class="section">
+    <div class="section-head">
+      <h2 th:text="${reserva.id == null ? 'Nueva Reserva' : 'Editar Reserva'}"></h2>
+      <a class="btn btn-outline" th:href="@{/reservas}">Volver</a>
+    </div>
+
+    <div class="card">
+      <form th:action="@{/reservas/guardar}" method="post" th:object="${reserva}">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-row">
+          <label>Nombre del Cliente</label>
+          <input type="text" th:field="*{nombreCliente}" placeholder="Ej: María López" required>
+        </div>
+
+        <div class="form-row">
+          <label>Fecha</label>
+          <input type="date" th:field="*{fecha}" required>
+        </div>
+
+        <div class="form-row">
+          <label>Servicio</label>
+          <select name="servicioId" required>
+            <option value="">-- Seleccione --</option>
+            <option th:each="s : ${servicios}"
+                    th:value="${s.id}"
+                    th:text="${s.nombre}"
+                    th:selected="${servicioId != null and s.id == servicioId}">
+            </option>
+          </select>
+        </div>
+
+        <button class="btn" type="submit">Guardar</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

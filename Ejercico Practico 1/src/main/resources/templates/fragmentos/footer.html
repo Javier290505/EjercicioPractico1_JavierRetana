@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="footer">
+<footer class="footer">
+  <div class="container footer-row">
+    <p>© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}"></span> Salón Belleza - Proyecto SC403</p>
+    <p class="muted">Promos, citas y servicios para una experiencia premium.</p>
+  </div>
+</footer>
+</body>
+</html>

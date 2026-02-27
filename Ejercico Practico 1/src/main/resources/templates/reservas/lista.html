@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Reservas | Salón Belleza')"></head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<main class="container">
+  <section class="section">
+    <div class="section-head">
+      <h2>Gestión de Reservas</h2>
+      <a class="btn" th:href="@{/reservas/nueva}">Nueva Reserva</a>
+    </div>
+
+    <div class="card">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Cliente</th>
+          <th>Fecha</th>
+          <th>Servicio</th>
+          <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="r : ${reservas}">
+          <td th:text="${r.id}">1</td>
+          <td th:text="${r.nombreCliente}">Ana</td>
+          <td th:text="${r.fecha}">2026-03-10</td>
+          <td th:text="${r.servicio.nombre}">Corte</td>
+          <td class="actions">
+            <a class="btn btn-sm" th:href="@{/reservas/editar/{id}(id=${r.id})}">Editar</a>
+            <a class="btn btn-sm btn-danger" th:href="@{/reservas/eliminar/{id}(id=${r.id})}"
+               onclick="return confirm('¿Eliminar reserva?')">Eliminar</a>
+          </td>
+        </tr>
+
+        <tr th:if="${#lists.isEmpty(reservas)}">
+          <td colspan="5" class="muted">No hay reservas registradas.</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head('Formulario Categoría | Salón Belleza')"></head>
+<body>
+
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<main class="container">
+  <section class="section">
+    <div class="section-head">
+      <h2 th:text="${categoria.id == null ? 'Nueva Categoría' : 'Editar Categoría'}"></h2>
+      <a class="btn btn-outline" th:href="@{/categorias}">Volver</a>
+    </div>
+
+    <div class="card">
+      <form th:action="@{/categorias/guardar}" method="post" th:object="${categoria}">
+        <input type="hidden" th:field="*{id}">
+        <div class="form-row">
+          <label>Nombre</label>
+          <input type="text" th:field="*{nombre}" placeholder="Ej: Cabello" required>
+        </div>
+        <button class="btn" type="submit">Guardar</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>
